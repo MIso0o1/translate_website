@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload File</title>
+    <style>
+        body {
+            background-color: black; /* Set the background color to black */
+            color: white; /* Set the font color to white */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Use the viewport height for vertical centering */
+            margin: 0; /* Remove default margin */
+            font-family: "Comic Sans MS", cursive; /* Change the font to Comic Sans MS */
+        }
+        /* Center the form content */
+        form {
+            text-align: center;
+        }
+        /* Style the button */
+        button {
+            background-color: black; /* Set the button background color to black */
+            color: white; /* Set the button text color to white */
+            border: 2px solid white; /* Add a white border to the button */
+            padding: 10px 20px; /* Add padding to the button for spacing */
+            cursor: pointer; /* Change cursor to pointer on hover */
+            border-radius: 15px; /* Add rounded edges to the button */
+        }
+        /* Add left margin to the h1 element */
+        h1 {
+            margin-left: 90px; /* Adjust the margin as needed */
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Translate File</h1>
+        <p>Upload one of the following file types: .docx, .pptx, .xlsx</p>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Translate</button>
+        </form>
+    </div>
+</body>
+</html>
