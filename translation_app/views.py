@@ -1,16 +1,12 @@
-
 import requests
 from django.shortcuts import render
 from django.http import HttpResponse
 from .forms import TranslationForm
 from .models import TranslatedFile  # Import your model if not already imported
-from django.contrib.auth.models import User
-from django.contrib.auth.decorators import login_required 
 
 # Define the API endpoint URL (replace with your actual API URL)
 api_url = "https://translate-documents-79a700ed9476.herokuapp.com/translate"
 
-@login_required  # Use the login_required decorator to ensure the user is logged in
 def upload_file(request):
     if request.method == 'POST':
         form = TranslationForm(request.POST, request.FILES)
@@ -37,9 +33,8 @@ def upload_file(request):
                 translated_content = response.text
 
                 # Create a TranslatedFile object and save it to the database
-                user = request.user  # Get the currently logged-in user
+                # Note: You may need to adjust this part based on your models
                 translated_file = TranslatedFile(
-                    user=user,  # Associate the user with the file
                     original_file=uploaded_file,
                     translated_file=translated_content,
                     target_language=target_language,

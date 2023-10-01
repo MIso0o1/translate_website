@@ -21,8 +21,6 @@ from django.contrib.auth import views as auth_views  # Import auth_views
 from translation_app import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
     path('', views.upload_file, name='upload_file'),
-    path('accounts/login/', auth_views.LoginView.as_view(), name='login'),
 ]
 
