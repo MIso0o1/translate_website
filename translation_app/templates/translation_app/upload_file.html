@@ -37,7 +37,6 @@
         <h1>Translate File</h1>
         <p>Upload one of the following file types: .docx, .pptx, .xlsx</p>
         <form method="post" enctype="multipart/form-data">
-            {% csrf_token %}
             {{ form.as_p }}
             <button type="submit">Translate</button>
         </form>
