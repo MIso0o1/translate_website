@@ -1,5 +1,6 @@
 import requests
-from django.shortcuts import render
+import base64
+import json
 from django.http import HttpResponse
 from .forms import TranslationForm
 from .models import TranslatedFile  # Import your model if not already imported
@@ -19,33 +20,38 @@ def upload_file(request):
             api_key = "e5a24b06799b3bdda926f26ee68594d6"  # Replace with your API key
             headers = {"X-API-Key": api_key}
 
-            # Define the payload with language and file
-            payload = {"language": target_language}  # Replace with the target language code
+            # Define the payload with language
+            payload = {"language": target_language}
 
             # Define the files to be sent in form-data
             files = {"file": (uploaded_file.name, uploaded_file.read())}
 
-            # Send the POST request to the translation API
+            # Make the POST request to the translation API
             response = requests.post(api_url, headers=headers, data=payload, files=files)
 
             if response.status_code == 200:
-                # Translation successful
-                translated_content = response.text
+                # Parse the JSON response
+                response_data = json.loads(response.text)
 
-                # Create a TranslatedFile object and save it to the database
-                # Note: You may need to adjust this part based on your models
-                translated_file = TranslatedFile(
-                    original_file=uploaded_file,
-                    translated_file=translated_content,
-                    target_language=target_language,
-                )
-                translated_file.save()
+                # Extract the base64 string from the "translated_content" field
+                base64_string = response_data.get("translated_content", "")
 
-                # Render the translated content in a template
-                return render(request, 'translation_app/translated_result.html', {'translated_content': translated_content})
+                if base64_string:
+                    # Decode the base64 string to bytes
+                    decoded_bytes = base64.b64decode(base64_string)
+
+                    # Set the content type for the response
+                    response = HttpResponse(decoded_bytes, content_type="application/octet-stream")
+
+                    # Set the content-disposition header to trigger a download
+                    response['Content-Disposition'] = f'attachment; filename="{uploaded_file.name}"'
+
+                    return response
+
+                else:
+                    return HttpResponse("Base64 string not found in the response.")
 
             else:
-                # Translation failed; handle the error
                 return HttpResponse(f"Translation failed. Status Code: {response.status_code}")
 
     else:
