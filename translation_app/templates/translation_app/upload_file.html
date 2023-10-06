@@ -13,6 +13,18 @@
             margin: 0; /* Remove default margin */
             font-family: "Comic Sans MS", cursive; /* Change the font to Comic Sans MS */
         }
+        /* Light mode */
+        body.dark-mode {
+            background-color: white;
+            color: black;
+        }
+        /* Style the button for light mode */
+        .light-mode-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            cursor: pointer;
+        }
         /* Center the form content */
         form {
             text-align: center;
@@ -26,13 +38,59 @@
             cursor: pointer; /* Change cursor to pointer on hover */
             border-radius: 15px; /* Add rounded edges to the button */
         }
+        /* Style the button for dark mode */
+        body.dark-mode button {
+            background-color: white;
+            color: black;
+            border: 2px solid black;
+        }
         /* Add left margin to the h1 element */
         h1 {
             margin-left: 90px; /* Adjust the margin as needed */
         }
+        /* Style the container for Available Languages */
+        .languages-container {
+            position: absolute;
+            top: 0;
+            right: 20px; /* Adjust the position as needed */
+            display: flex;
+            align-items: center;
+            font-size: 15px;
+        }
+        /* Style the dropdown */
+        .dropdown {
+            position: relative;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        /* Dropdown content (hidden by default) */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            min-width: 160px;
+            z-index: 1;
+        }
+        /* Dropdown links */
+        .dropdown-content a {
+            color: white;
+            background-color: black; /* Set the background color to black */
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        /* Style the dropdown for dark mode */
+        body.dark-mode .dropdown-content a {
+            color: black;
+            background-color: white; /* Set the background color to white */
+        }
+        /* Show the dropdown menu on hover */
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
     </style>
 </head>
 <body>
+    <div class="light-mode-button" onclick="toggleLightMode()">Toggle Light Mode</div>
     <div>
         <h1>Translate File</h1>
         <p>Upload one of the following file types: .docx, .pptx, .xlsx</p>
@@ -41,5 +99,55 @@
             <button type="submit">Translate</button>
         </form>
     </div>
+    <div class="languages-container">
+        <div class="dropdown">
+            <span>Available Languages</span>
+            <div class="dropdown-content">
+                <a href="#">BG - Bulgarian</a>
+                <a href="#">CS - Czech</a>
+                <a href="#">DE - German</a>
+                <a href="#">EL - Greek</a>
+                <a href="#">EN - English</a>
+                <a href="#">EN-GB - English (British)</a>
+                <a href="#">EN-US - English (American)</a>
+                <a href="#">ES - Spanish</a>
+                <a href="#">ET - Estonian</a>
+                <a href="#">FR - French</a>
+                <a href="#">FI - Finnish</a>
+                <a href="#">HU - Hungarian</a>
+                <a href="#">ID - Indonesian</a>
+                <a href="#">IT - Italian</a>
+                <a href="#">JA - Japanese</a>
+                <a href="#">KO - Korean</a>           
+                <a href="#">LT - Lithuanian</a>
+                <a href="#">LV - Latvian</a>
+                <a href="#">NB - Norwegian (Bokmål)</a>
+                <a href="#">NL - Dutch</a>
+                <a href="#">PL - Polish</a>
+                <a href="#">PT - Portuguese (all Portuguese varieties mixed)</a>
+                <a href="#">RO - Romanian</a>
+                <a href="#">RU - Russian</a>
+                <a href="#">SK - Slovak</a>
+                <a href="#">SL - Slovenian</a>
+                <a href="#">SV - Swedish</a>
+                <a href="#">TR - Turkish</a>
+                <a href="#">UK - Ukrainian</a>
+                <a href="#">ZH - Chinese</a>
+                <!-- Add more language options here -->
+            </div>
+        </div>
+    </div>
+    <script>
+        function toggleLightMode() {
+            var body = document.body;
+    
+            // Check if dark mode is enabled
+            if (body.classList.contains("dark-mode")) {
+                body.classList.remove("dark-mode"); // Switch to light mode
+            } else {
+                body.classList.add("dark-mode"); // Switch to dark mode
+            }
+        }
+    </script>
 </body>
 </html>
