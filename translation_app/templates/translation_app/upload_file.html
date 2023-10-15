@@ -3,23 +3,6 @@
 <head>
     <title>Upload File</title>
     <style>
-        div.convert-pdf-container {
-            text-align: center;
-            margin-top: 1px; /* Adjust the margin as needed */
-        }
-        div.convert-pdf-container p {
-            margin-left: 90px; /* Adjust the margin as needed */
-        }
-            /* Adjust the margin to move the buttons more to the right */
-        div.convert-pdf-container form {
-            text-align: center;
-        }
-        div.convert-pdf-container form button {
-            margin-left: 60px; /* Adjust the margin as needed */
-        }
-        div.convert-pdf-container form input[type="file"] {
-            margin-left: 140px; /* Adjust the margin as needed */
-        }
         body {
             background-color: black; /* Set the background color to black */
             color: white; /* Set the font color to white */
@@ -114,16 +97,6 @@
         <form method="post" enctype="multipart/form-data">
             {{ form.as_p }}
             <button type="submit">Translate</button>
-        </form>
-    </div>
-    <div class="convert-pdf-container">
-        <h1>Convert PDF to Word</h1>
-        <p>Upload a PDF file for conversion to Word</p>
-        <form method="post" action="{% url 'convert' %}" enctype="multipart/form-data">
-            <input type="file" name="pdf_file">
-            <br>
-            <br>
-            <button type="submit">Convert</button>
         </form>
     </div>
     <div class="languages-container">

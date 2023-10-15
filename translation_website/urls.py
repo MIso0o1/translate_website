@@ -22,6 +22,4 @@ from translation_app import views
 
 urlpatterns = [
     path('', views.upload_file, name='upload_file'),
-    path('convert/', views.convert_to_word, name='convert'),
 ]
-
