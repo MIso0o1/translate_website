@@ -1,12 +1,13 @@
 import requests
 import base64
 import json
+import os  # Import the os module
 from django.http import HttpResponse
 from .forms import TranslationForm
 from .models import TranslatedFile  # Import your model if not already imported
 from django.shortcuts import render, redirect
 
-# Define the API endpoint URL (replace with your actual API URL)
+# Define the API endpoint URL
 api_url = "https://translate-documents-79a700ed9476.herokuapp.com/translate"
 
 def upload_file(request):
@@ -17,8 +18,10 @@ def upload_file(request):
             target_language = form.cleaned_data['target_language']
             uploaded_file = request.FILES['file']
 
+            # Retrieve the API key from the environment variables
+            api_key = os.environ.get('API_KEY')
+
             # Prepare headers for the API request
-            api_key = "e5a24b06799b3bdda926f26ee68594d6"  # Replace with your API key
             headers = {"X-API-Key": api_key}
 
             # Define the payload with language
