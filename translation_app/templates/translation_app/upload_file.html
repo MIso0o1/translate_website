@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Upload File</title>
+    <title>Translate documents free</title>
+    <!-- <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">-->
     <style>
         body {
             background-color: black; /* Set the background color to black */
@@ -51,11 +52,11 @@
         /* Style the container for Available Languages */
         .languages-container {
             position: absolute;
-            top: 0;
-            right: 20px; /* Adjust the position as needed */
+            top: 8px;
+            right: 10px; /* Adjust the position as needed */
             display: flex;
             align-items: center;
-            font-size: 15px;
+            font-size: 18px;
         }
         /* Style the dropdown */
         .dropdown {
@@ -87,10 +88,21 @@
         .dropdown:hover .dropdown-content {
             display: block;
         }
+        .top-center {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            margin-top: 20px;
+            font-size: 24px;
+            width: 100%; /* Adjust the width as needed */
+        }
     </style>
 </head>
 <body>
     <div class="light-mode-button" onclick="toggleLightMode()">Toggle Light Mode</div>
+    <div class="top-center">Instantly translate files and preserve formatting using AI. For free</div>
     <div>
         <h1>Translate File</h1>
         <p>Upload one of the following file types: .docx, .pptx, .xlsx</p>
